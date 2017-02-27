@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            display: none;
+        }
+        label:nth-of-type(odd) {
+            margin-right: 10px;
+        }
+        input[type='checkbox']+label{
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border:1px solid #bfbfbf;
+            position: relative;
+        }
+        input[type='checkbox']:checked+label{
+            border:1px solid #ef460d;
+        }
+        input[type='checkbox']:checked+label::before{
+            content: '\2714';
+            text-align: center;
+            color: #ef460d;
+            line-height: 14px;
+            font-size: 0.8em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        input[type='radio']+label{
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 100% ;
+            border: 1px solid #bfbfbf;
+            position: relative;
+        }
+        input[type='radio']:checked+label{
+            border:1px solid #ef460d;
+        }
+        input[type='radio']:checked+label::before{
+            content: ' ';
+            width: 6px;
+            height: 6px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            background-color:  #ef460d;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<input type="radio" id="rdo1" name="Name" />
+<label for="rdo1"> </label>
+<input type="radio" id="rdo2" name="Name" />
+<label for="rdo2"></label>
+<br>
+<input type="checkbox" id="chk1"/>
+<label for="chk1"> </label>
+<input type="checkbox" id="chk2"/>
+<label for="chk2"> </label>
+</body>
+</html>
