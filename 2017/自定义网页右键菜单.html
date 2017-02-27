@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" >
     <title>Title</title>
     <style>
         *{
@@ -13,8 +13,8 @@
         }
         #demo{
             margin: 20px auto;
-            width: 400px;
-            height: 100px;
+            width: 500px;
+            height: 1000px;
             line-height: 100px;
             font-size: 30px;
             text-align: center;
@@ -47,25 +47,33 @@
 <script>
     var oDiv = document.getElementById("demo");
     var x = document.getElementById("menu");
+    function myFunction(ev){
+        var ev = ev || event;
+        x.style.display = 'block';
+        // 鼠标位置
+        var _clientX = ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);
+        var _clientY =ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop) ;
+//        判断右键菜单是超出窗口显示范围
+        if((ev.clientX + x.offsetWidth)> window.innerWidth){
+            _clientX = _clientX - x.offsetWidth
+        }
+        if((ev.clientY + x.offsetHeight)> window.innerHeight){
+            _clientY = _clientY- x.offsetHeight
+        }
+        // 右键菜单位置
+        x.style.left = _clientX  + 'px';
+        x.style.top = _clientY  - 15 + 'px';
+    }
+    bind(oDiv,'contextmenu',myFunction);
+    //阻止鼠标默认事件发生
     window.document.oncontextmenu = function(){
-//alert('请不要点击鼠标右键！');
         return false;
     };
+    // 点击鼠标时，清除右键菜单
     bind(window.document,'click',function(){
         x.style.display = 'none';
     });
-    bind(oDiv,'contextmenu',myFunction);
-    function myFunction(ev){
-         var ev = ev || event;
-         var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-         x.style.left = ev.clientX + scrollLeft + 'px';
-         x.style.top = ev.clientY +scrollTop+ 'px';
-         x.style.display = 'block';
-    }
-
-
-//    绑定事件函数
+    // 绑定事件函数
     function bind(obj,evname,fn) {
         if(obj.addEventListener){
             obj.addEventListener(evname,fn,false);
