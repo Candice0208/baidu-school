@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            display: none;
+        }
+        label {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+        label[for*='chk']{
+            background: url("img/bg.gif") 0 -22px no-repeat;
+        }
+        input[type='checkbox']:checked+label{
+            background: url("img/bg.gif") -35px -22px no-repeat;
+        }
+        label[for*='rdo']{
+            background: url("img/bg.gif") 0 0 no-repeat;
+        }
+        input[type='radio']:checked+label{
+            background: url("img/bg.gif") -35px 0 no-repeat;
+        }
+
+    </style>
+</head>
+<body>
+<input type="radio" id="rdo1" name="Name" />
+<label for="rdo1"> </label>
+<input type="radio" id="rdo2" name="Name" />
+<label for="rdo2"></label>
+<br>
+<input type="checkbox" id="chk1"/>
+<label for="chk1"> </label>
+<input type="checkbox" id="chk2"/>
+<label for="chk2"> </label>
+</body>
+</html>
