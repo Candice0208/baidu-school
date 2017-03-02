@@ -11,8 +11,8 @@
     var aInt = document.getElementsByTagName('input');
     var aSpan = document.getElementsByTagName('span');
     aInt[1].onclick = function () {
-//        var re = /\b1[3-8]\d{9}\b/;
-        var re = /\(?0\d{2}[)-]?\d{8}/;
+        var re = /\b1[3-8]\d{9}\b/;
+//        var re = /\(?0\d{2}[)-]?\d{8}/;
         if(re.test(aInt[0].value)){
             aSpan[0].innerHTML = '输入正确！';
             aSpan[0].style.color = 'green';
