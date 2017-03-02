@@ -9,7 +9,7 @@
         }
     #demo{
         padding: 10px;
-        width: 800px;
+        width: 1000px;
         height: 800px;
         margin: 50px auto;
         background-color: #FFFFFF;
@@ -23,7 +23,7 @@
     }
     #array span{
         display: inline-block;
-        width: 12px;
+        width: 10px;
         margin-right: 4px;
         background-color: #C81623;
         /*position: absolute;*/
@@ -79,6 +79,7 @@
             str += "<span style='"+" height:"+height+ "px;margin-top:"+paddin+"px'></span>"
         }
         oDiv.innerHTML = str;
+        sPan_num = 50;
     };
     //    从低到高排序
     aInp[6].onclick = function() {
@@ -106,6 +107,7 @@
     function insert(node) {
         num = parseInt(aInp[0].value);
         if(sPan_num>60){
+            alert('输入个数限制在60以内');
             return false;
         }
         else if(!isNaN(num)&&num>=10&&num<=100){
