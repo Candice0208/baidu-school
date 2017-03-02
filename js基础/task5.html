@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5：基础JavaScript练习（二）</title>
+    <style>
+    body{
+        background-color: #002953;
+        }
+    #demo{
+        padding: 10px;
+        width: 800px;
+        height: 800px;
+        margin: 50px auto;
+        background-color: #FFFFFF;
+        text-align: center;
+        }
+    #demo input:first-child{
+        padding: 10px;
+        }
+    #array{
+        height: 300px;
+    }
+    #array span{
+        display: inline-block;
+        width: 12px;
+        margin-right: 6px;
+        background-color: #C81623;
+        /*position: absolute;*/
+        /*bottom: 0;*/
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <input type="text" placeholder="请输入数字">
+    <input type="button" value="左侧入">
+    <input type="button" value="右侧入">
+    <input type="button" value="左侧出">
+    <input type="button" value="右侧出">
+    <div id="array"></div>
+    <input type="button" value="从低到高排序">
+</div>
+<script>
+    var oDemo = document.getElementById('demo');
+    var aInp = oDemo.getElementsByTagName('input');
+    var oDiv = document.getElementById('array');
+    var num = null;
+    var sPan_num = 0;
+    var max = 100;
+    var dHight = oDiv.offsetHeight/max;
+
+    //    左侧入
+    bind(aInp[1],'click',function(){
+        insert(oDiv.firstChild)
+    });
+    //    右侧入
+    bind(aInp[2],'click',function(){
+        insert(null)
+    });
+     //    左侧出
+    bind(aInp[3],'click',function(){
+        _delete(oDiv.firstChild)
+    });
+    //    右侧出
+    bind(aInp[4],'click',function(){
+        _delete(oDiv.lastChild)
+    });
+    //    从低到高排序
+    aInp[5].onclick = function() {
+        var aSpan = oDiv.getElementsByTagName('span');
+        var arr = [];
+        var str = '';
+        var paddin = null;
+        for(var i = 0 ;i<aSpan.length ; i++) {
+            arr.push(aSpan[i].offsetHeight);
+        }
+        arr.sort(compare);
+        for(i = 0; i<arr.length ;i++){
+            paddin = 300-arr[i];
+            str += "<span style='"+" height:"+arr[i] + "px;margin-top:"+paddin+"px'></span>"
+        }
+        oDiv.innerHTML = str;
+    };
+
+    function compare(a,b) {
+        if(a<b)return -1;
+        else if(a>b) return 1;
+        else return 0;
+    }
+    //    插入条形函数
+    function insert(node) {
+        num = parseInt(aInp[0].value);
+        if(!isNaN(num)){
+            if(num<10||num>100){
+                alert('请输入10-100的数字');
+                return false
+            }
+            else{
+                var aSpan = document.createElement('span');
+                aSpan.style.height = num * dHight + 'px';
+                aSpan.style.marginTop = (max-num) * dHight + 'px';
+                //绑定点击删除事件
+                aSpan.onclick = function () {
+                    alert('您将删除"'+this.innerHTML + '"');
+                    this.remove();
+                };
+               // alert(1);
+                oDiv.insertBefore(aSpan,node)
+            }
+        }
+    }
+    //   删除条形函数
+    function _delete(node){
+        if(oDiv.firstChild!==null){
+            oDiv.removeChild(node)
+        }
+        else{
+            alert('没有可删除的！')
+        }
+    }
+    // 绑定事件函数
+    function bind(obj,evname,fn) {
+        if(obj.addEventListener){
+            obj.addEventListener(evname,fn,false);
+        }
+        else{
+            obj.attachEvent('on'+evname,function () {
+                fn.call(obj)
+            })
+        }
+    }
+</script>
+</body>
+</html>
