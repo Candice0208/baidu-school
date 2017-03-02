@@ -20,6 +20,7 @@
         else{
             aSpan[0].innerHTML = '请输入正确的11位手机号码！';
             aSpan[0].style.color = 'red';
+            aInt[0].value = '';
         }
     };
     aInt[3].onclick = function () {
@@ -33,10 +34,12 @@
         else if(value === ''){
             aSpan[1].innerHTML = '请输入有效内容！';
             aSpan[1].style.color = 'red';
+            aInt[0].value = '';
         }
         else{
             aSpan[1].innerHTML = '输入正确！';
             aSpan[1].style.color = 'green';
+            aInt[0].value = '';
         }
     }
 </script>
