@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0; padding:0;}
+        #div1{
+            margin: 50px;
+        }
+        #div2{
+            width: 450px;
+            height: 450px;
+            border: 2px solid #000000;
+            background:
+                    -webkit-linear-gradient(top, transparent 44px, grey 45px),
+                    -webkit-linear-gradient(left, transparent 44px, grey 45px) ;
+            background-size: 45px 45px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        #div1 .top,#div1 .left{
+            position: absolute;
+            font-family: '微软雅黑', sans-serif;
+        }
+        #div1 .top{
+            left: 18px;
+            top: -26px;
+            word-spacing: 30px;
+        }
+        #div1 .left{
+            top: 4px;
+            left: -26px;
+            width: 16px;
+            line-height: 45px;
+            text-align: center;
+        }
+        #div2 .box{
+            height: 44px;
+            width: 44px;
+            position: absolute;
+            left: 225px;
+            top: 225px;
+            background: red;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <script>
+        window.onload=function () {
+            var oDiv2 = document.getElementById('div2');
+            var oBox = oDiv2.getElementsByTagName('div')[0];
+            var oText = document.getElementById('text');
+            var oBtn = document.getElementById('btn');
+            var EventUtil = {
+                addHandler: function(element, type, handler){
+                    if (element.addEventListener){
+                        element.addEventListener(type, handler, false);
+                    } else if (element.attachEvent){
+                        element.attachEvent("on" + type, handler);
+                    } else {
+                        element["on" + type] = handler;
+                    }
+                }
+            };
+            EventUtil.addHandler(oBtn,'click',handler);
+            function handler() {
+                switch (oText.value){
+                    case  'GO'    :  GO()     ;  break;
+                    case 'TUN LEF':  TUN_LEF();  break;
+                    case 'TUN RIG':  TUN_RIG();  break;
+                    case 'TUN BAC':  TUN_BAC();  break;
+                    default : break;
+                }
+            }
+            function GO() {
+                if(oBox.style.borderTop){
+                    if(oBox.offsetTop > 0 )oBox.style.top = oBox.offsetTop - 45 + 'px';
+                }
+                else if(oBox.style.borderLeft){
+                    if(oBox.offsetLeft > 0 )oBox.style.left = oBox.offsetLeft - 45 + 'px';
+                }
+                else if(oBox.style.borderBottom){
+                    if(oBox.offsetTop < 405 )oBox.style.top = oBox.offsetTop + 45 + 'px';
+                }
+                else{
+                    if(oBox.offsetLeft < 405 )oBox.style.left = oBox.offsetLeft + 45 + 'px';
+                }
+            }
+            function TUN_LEF() {
+                if(oBox.style.borderTop){
+                    oBox.style.borderTop = null;
+                    oBox.style.borderLeft = '10px solid blue';
+                }
+                else if(oBox.style.borderLeft){
+                    oBox.style.borderLeft = null;
+                    oBox.style.borderBottom = '10px solid blue';
+                }
+                else if(oBox.style.borderBottom ){
+                    oBox.style.borderBottom = null;
+                    oBox.style.borderRight = '10px solid blue';
+                }
+                else {
+                    oBox.style.borderRight = null;
+                    oBox.style.borderTop = '10px solid blue';
+                }
+            }
+            function TUN_RIG() {
+                if(oBox.style.borderTop){
+                    oBox.style.borderTop = null;
+                    oBox.style.borderRight = '10px solid blue';
+                }
+                else if(oBox.style.borderLeft){
+                    oBox.style.borderLeft = null;
+                    oBox.style.borderTop = '10px solid blue';
+                }
+                else if(oBox.style.borderBottom){
+                    oBox.style.borderBottom = null;
+                    oBox.style.borderLeft = '10px solid blue';
+                }
+                else {
+                    oBox.style.borderRight = null;
+                    oBox.style.borderBottom = '10px solid blue';
+                }
+            }
+            function TUN_BAC() {
+                if(oBox.style.borderTop){
+                    oBox.style.borderTop = null;
+                    oBox.style.borderBottom = '10px solid blue';
+                }
+                else if(oBox.style.borderLeft){
+                    oBox.style.borderLeft = null;
+                    oBox.style.borderRight = '10px solid blue';
+                }
+                else if(oBox.style.borderBottom){
+                    oBox.style.borderBottom = null;
+                    oBox.style.borderTop = '10px solid blue';
+                }
+                else {
+                    oBox.style.borderRight = null;
+                    oBox.style.borderLeft = '10px solid blue';
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id='div2'>
+        <p class="top">1 2 3 4 5 6 7 8 9 10</p>
+        <p class="left">1 2 3 4 5 6 7 8 9 10</p>
+        <div class = 'box' style="border-top: 10px solid blue;"></div>
+    </div>
+    <select id="text" name="run"  style="width:100px">
+        <option value="GO">GO</option>
+        <option value="TUN LEF">TUN LEF</option>
+        <option value="TUN RIG">TUN RIG</option>
+        <option value="TUN BAC">TUN BAC</option>
+    </select>
+    <input id="btn" type="button" value="执行"/>
+</div>
+
+</body>
+</html>

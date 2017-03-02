@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            display: none;
+        }
+        label{
+            display: block;
+        }
+        .l1{
+            width: 16px;
+            height: 16px;
+            background: url("img/bg.gif");
+            border-radius: 50%;
+        }
+        .l1:active{
+            background: url("img/bg.gif") -35px 0;
+        }
+        input[type="checkbox"]+label{
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: url("img/bg.gif") -1px 15px;
+            /*border-radius: 50%;*/
+        }
+        input[type="checkbox"]:checked+label::before{
+            /*checked:true;*/
+            background: url("img/bg.gif") -36px 15px;
+        }
+        /*#checkbox:checked+.l2 {*/
+            /*background:url("bg.gif") -36px 15px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<label for="radio" class="l1"></label>
+<input type="radio" id="radio">
+<br>
+<input type="checkbox" id="checkbox"><br>
+<label for="checkbox" class="l2"></label>
+</body>
+</html>

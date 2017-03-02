@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        label{
+            font-family: 微软雅黑;
+            font-size: 20px;
+        }
+        #inp1{
+            width: 240px;
+            height: 22px;
+            border: 1px solid gray;
+            border-radius: 6px;
+            padding: 1px;
+            /*background-color:red;*/
+        }
+
+        #inp2{
+            width: 40px;
+            height: 26px;
+        }
+        span{
+            margin-left: 46px;
+            font-family: 微软雅黑;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<form action="">
+    <label for="inp1" name="name">名称</label>
+    <input type="text" id="inp1">
+    <input type="submit" value="验证" id="inp2"><br>
+    <span>必填，长度为4-16个字符</span>
+</form>
+<script>
+    var oForm = document.getElementsByTagName('form')[0];
+    var aInp = document.getElementsByTagName('input');
+    var oSpan = document.getElementsByTagName('span')[0];
+
+    oForm.onsubmit = function () {
+        var reg=/\w{4,16}/;
+        if( reg.test(aInp[0].value) ){
+//            alert(1)
+            aInp[0].style.border = '1px solid green';
+            oSpan.style.color = 'green';
+            oSpan.innerHTML = "名称格式正确"
+            return true
+        }else if(aInp[0].value=""){
+            aInp[0].style.border = '1px solid red';
+            oSpan.style.color = 'red';
+            oSpan.innerHTML = "姓名不能为空"
+        }else {
+            aInp[0].style.border = '1px solid red';
+            oSpan.style.color = 'red';
+            oSpan.innerHTML = "姓名格式不正确"
+        }
+        return false
+
+    }
+
+</script>
+
+</body>
+</html>

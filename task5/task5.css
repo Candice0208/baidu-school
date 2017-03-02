@@ -1,0 +1,54 @@
+*{padding: 0;margin: 0}
+img { border:none; vertical-align:top; }
+ul li{list-style: none;}
+table { border-collapse:collapse; }
+input,textarea { outline:none; }
+body{background-color: #e4e4e4;font-size: 16px;}
+
+/*头部*/
+#header{ width: 100%;height: 70px; background: #373737; }
+#header img{width:170px;height: 70px; margin-left:50px;}
+#header ul{ float: right;margin: 20px;}
+#header ul li{display: inline-block;margin-right: 10px;text-align: center; width:80px;}
+#header ul li a{color: #e5e5e5; text-decoration: none; font-size:12px;}
+#header ul li:hover{ border-bottom: 1px solid red;   background: #474747;   border-radius: 3px;}
+
+/*内容区域*/
+#wrap{width: 100%}
+.article, .figure{margin: 20px;padding: 20px;background-color: white}
+#main{margin-right: 410px;}
+#main .article h2{padding: 15px 0;}
+#main .article h3{padding: 10px 0; color: #717171;}
+#main .auther, #main .aTime{line-height:30px; color: #717171;font-size: 14px;margin-right: 10px}
+#main .article .content{margin:10px 0;line-height: 32px;text-indent: 2em;}
+#main .article ul{margin: 10px 20px;}
+#main .article li{line-height: 26px;}
+#main .figure ul{padding: 0 20px;overflow: auto}
+#main .figure ul li{float: left; margin: 20px 20px 20px 0; border: 1px solid #bfbfbf;padding: 10px; }
+#main .figure ul li p{text-align: center;font-size: 14px;}
+#main .figure ul li img{margin-top: 10px;width:120px;height: 100px;}
+#main .article ol{margin:20px 40px;}
+#main .article table{width: 100%; font-size: 14px;border: 1px solid #9c9c9c;}
+#main .article table thead{background-color: #424242; color: #FFFFFF;font-weight: bold;}
+#main .article table thead td{border: 1px solid #ffffff;}
+#main .article table td{padding: 5px;}
+#main .article table tbody td{border: 1px solid #9c9c9c;}
+#main .article table tfoot{background-color: #b1b1b1; font-weight: bold}
+
+/*侧边栏*/
+#aside{width:350px; float:right; margin-top:20px;margin-right: 20px; padding: 20px;background-color: white}
+#aside h3{border-left: 3px solid #ccc;height: 40px;line-height: 40px; padding-left: 1px;}
+#aside form{margin:10px auto 0;font-size: 14px;display: table; width: 100%; }
+#aside form .row {display: table-row;}
+#aside form .cell {display: table-cell;  vertical-align: top;  padding: 6px;}
+#aside form .ps{color: #8d8987;padding:0 6px 15px;font-size: 12px;}
+#aside form .row .cell:first-child { text-align: right;   padding-right: 20px;}
+#aside form div.heading {   font-weight: bold;}
+#aside form textarea {  width: 90%;   height: 100px; line-height: 18px;}
+#city{width: 80px}
+#aside form label{padding: 5px;}
+#sub{width: 100%;height: 40px;background: dodgerblue;font-size: 19px;color: white;line-height: 40px;text-align: center;border-radius: 10px; border:none;}
+
+/*页脚*/
+#footer{width: 100%;height: 84px; background-color: #424242;}
+#footer p{width: 100%; height: 84px; color: white;text-align: center;line-height: 84px}
