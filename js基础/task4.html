@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: #002953;
+        }
+        #demo{
+            padding: 10px;
+            width: 800px;
+            height: 800px;
+            margin: 50px auto;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+        #demo input:first-child{
+            padding: 10px;
+        }
+        #array span{
+            display: inline-block;
+            padding: 4px;
+            margin-right: 10px;
+            color: #FFFFFF;
+            background-color: #C81623;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <input type="text" placeholder="请输入数字">
+    <input type="button" value="左侧入">
+    <input type="button" value="右侧入">
+    <input type="button" value="左侧出">
+    <input type="button" value="右侧出">
+    <div id="array"></div>
+</div>
+<script>
+    var oDemo = document.getElementById('demo');
+    var aInp = oDemo.getElementsByTagName('input');
+    var oDiv = document.getElementById('array');
+    var num = 100;
+//    左侧入
+    aInp[1].onclick = function () {
+        num = parseInt(aInp[0].value);
+        if(!isNaN(num)){
+            var aSpan = document.createElement('span');
+            aSpan.innerHTML = num;
+//            绑定点击删除事件
+            aSpan.onclick = function () {
+                alert('您将删除"'+this.innerHTML + '"');
+                this.remove();
+            };
+            oDiv.insertBefore(aSpan,oDiv.firstChild)
+        }
+        else{
+            return false;
+        }
+    };
+//    右侧入
+    aInp[2].onclick = function () {
+        num = parseInt(aInp[0].value);
+        if(!isNaN(num)){
+            var aSpan = document.createElement('span');
+            aSpan.innerHTML = num;
+            aSpan.onclick = function () {
+                alert('您将删除"'+this.innerHTML + '"');
+                this.remove();
+            };
+            oDiv.insertBefore(aSpan, null)
+        }
+        else{
+            return false;
+        }
+    };
+//    左侧出
+    aInp[3].onclick = function () {
+        if(oDiv.firstChild!==null){
+            alert('您将删除"'+oDiv.firstChild.innerHTML + '"');
+            oDiv.removeChild(oDiv.firstChild)
+        }
+        else{
+            alert('没有可移除的数字！')
+        }
+    };
+//    右侧出
+    aInp[4].onclick = function () {
+        if(oDiv.lastChild!==null){
+            alert('您将删除"'+oDiv.lastChild.innerHTML + '"');
+            oDiv.removeChild(oDiv.lastChild)
+        }
+        else{
+            alert('没有可移除的数字！')
+        }
+    };
+
+
+
+</script>
+</body>
+</html>

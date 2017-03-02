@@ -11,7 +11,6 @@
 <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
 
 <script type="text/javascript">
-
     (function() {
         /*
          在注释下方写下代码
@@ -22,7 +21,6 @@
         var aText = document.getElementById('aqi-input');
         var aBtn = document.getElementById('button');
         var aSpan = document.getElementById('aqi-display');
-
         var handler = function(){
             var num = parseInt(aText.value);
             if((!isNaN(num))&&(num>=0)&&(num<=1000))
@@ -30,18 +28,15 @@
             else
                 alert(aText.value+'不是有效的AQI数值，请重新输入0-1000的数字')
         };
-
         aBtn.onclick = function () {
             handler();
         };
         aText.onkeyup = function (ev) {
             var ev = ev||event;
             if(ev.keyCode === 13)
-                    handler();
+                handler();
         }
-
     })();
-
 </script>
 </body>
 </html>
