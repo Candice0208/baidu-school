@@ -259,7 +259,8 @@ header div:last-child span{
     color: #FFFFFF;
 }
 #time div:nth-child(2){
-    margin-left: 850px;
+    width: 33.6%;
+    float: right;
     height: 566px;
     text-align: center;
 }
@@ -274,7 +275,8 @@ header div:last-child span{
     font-size: 24px;
 }
 #time div:nth-child(2) p{
-    padding: 20px 66px;
+    width: 70%;
+    margin: 20px auto;
     line-height: 32px;
     color: #b7b7b7;
     text-align: left;
