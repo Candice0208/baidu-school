@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="请输入你的手机号码"><input type="button" value="确定"><span></span><br>
+<input type="text" placeholder="请输入内容"><input type="button" value="确定"><span></span>
+<script>
+    var aInt = document.getElementsByTagName('input');
+    var aSpan = document.getElementsByTagName('span');
+    aInt[1].onclick = function () {
+//        var re = /\b1[3-8]\d{9}\b/;
+        var re = /\(?0\d{2}[)-]?\d{8}/;
+        if(re.test(aInt[0].value)){
+            aSpan[0].innerHTML = '输入正确！';
+            aSpan[0].style.color = 'green';
+        }
+        else{
+            aSpan[0].innerHTML = '请输入正确的11位手机号码！';
+            aSpan[0].style.color = 'red';
+        }
+    };
+    aInt[3].onclick = function () {
+        var value = aInt[2].value.replace(/(^\s*)|(\s*$)/g,'');
+//        alert(aInt[2].value);
+        var re = /\b([a-z]+)\b\s+\1\b/;
+        if(re.test(value)) {
+            aSpan[1].innerHTML = '您输入的字符串有相邻重复单词！';
+            aSpan[1].style.color = 'red';
+        }
+        else if(value === ''){
+            aSpan[1].innerHTML = '请输入有效内容！';
+            aSpan[1].style.color = 'red';
+        }
+        else{
+            aSpan[1].innerHTML = '输入正确！';
+            aSpan[1].style.color = 'green';
+        }
+    }
+</script>
+</body>
+</html>
