@@ -24,7 +24,7 @@
     #array span{
         display: inline-block;
         width: 12px;
-        margin-right: 6px;
+        margin-right: 4px;
         background-color: #C81623;
         /*position: absolute;*/
         /*bottom: 0;*/
@@ -39,6 +39,7 @@
     <input type="button" value="左侧出">
     <input type="button" value="右侧出">
     <div id="array"></div>
+    <input type="button" value="随机生成50个数字">
     <input type="button" value="从低到高排序">
 </div>
 <script>
@@ -66,8 +67,20 @@
     bind(aInp[4],'click',function(){
         _delete(oDiv.lastChild)
     });
+    aInp[5].onclick = function () {
+        var arr = randomNum(10,100,50);
+        var paddin = null;
+        var height = null;
+        var str = '';
+        for(i = 0; i<arr.length ;i++){
+            height = arr[i]*3;
+            paddin = 300-height;
+            str += "<span style='"+" height:"+height+ "px;margin-top:"+paddin+"px'></span>"
+        }
+        oDiv.innerHTML = str;
+    };
     //    从低到高排序
-    aInp[5].onclick = function() {
+    aInp[6].onclick = function() {
         var aSpan = oDiv.getElementsByTagName('span');
         var arr = [];
         var str = '';
@@ -91,29 +104,34 @@
     //    插入条形函数
     function insert(node) {
         num = parseInt(aInp[0].value);
-        if(!isNaN(num)){
-            if(num<10||num>100){
-                alert('请输入10-100的数字');
-                return false
-            }
-            else{
-                var aSpan = document.createElement('span');
-                aSpan.style.height = num * dHight + 'px';
-                aSpan.style.marginTop = (max-num) * dHight + 'px';
-                //绑定点击删除事件
-                aSpan.onclick = function () {
-                    alert('您将删除"'+this.innerHTML + '"');
-                    this.remove();
-                };
-               // alert(1);
-                oDiv.insertBefore(aSpan,node)
-            }
+        if(sPan_num>60){
+            return false;
         }
+        else if(!isNaN(num)&&num>=10&&num<=100){
+            var aSpan = document.createElement('span');
+            aSpan.style.height = num * dHight + 'px';
+            aSpan.style.marginTop = (max-num) * dHight + 'px';
+            //绑定点击删除事件
+            aSpan.onclick = function () {
+                alert('您将删除"'+this.innerHTML + '"');
+                this.remove();
+                sPan_num--;
+            };
+            // alert(1);
+            oDiv.insertBefore(aSpan,node);
+            sPan_num++;
+        }
+        else {
+                alert('请输入10-100的数字');
+                return false;
+        }
+
     }
     //   删除条形函数
     function _delete(node){
         if(oDiv.firstChild!==null){
             oDiv.removeChild(node)
+            sPan_num--;
         }
         else{
             alert('没有可删除的！')
@@ -129,6 +147,19 @@
                 fn.call(obj)
             })
         }
+    }
+    //随机产生num个x到y之间不重复的整数
+    function randomNum(x,y,num) {
+        var arr = [];
+        var newData = 0;
+        label1: while (arr.length<num){
+            newData = Math.round(Math.random()*(y-x)+x);
+            for(var i=0 ; i<arr.length ; i++){
+                if( arr[i] === newData) continue label1;
+            }
+            arr.push(newData);
+        }
+        return arr;
     }
 </script>
 </body>
