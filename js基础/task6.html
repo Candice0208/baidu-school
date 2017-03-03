@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>task6：基础JavaScript练习（三）</title>
+    <style>
+        #demo{
+            margin: 0 auto;
+            width: 500px;
+            text-align:right;
+        }
+        #demo textarea{
+            width: 500px;
+            height: 200px;
+            padding: 5px;
+            resize: none;
+        }
+        #demo div{
+            padding: 5px;
+            margin-top: 50px;
+            width: 490px;
+            height: 190px;
+            background-color: #fbf6b2;
+            font: 12px/18px "微软雅黑", serif;
+            text-align: left;
+            text-indent: 2em;
+            overflow: hidden;
+        }
+        #demo div span{
+            background:#a70c01;
+            color: #FFFFFF;
+        }
+
+    </style>
 </head>
 <body>
-
+<div id="demo">
+    <textarea placeholder="请输入内容"></textarea><br>
+    <input type="button" value="提交"><br>
+    <div></div>
+    <input type="text" placeholder="请输入您要查询的内容">
+    <input type = "button" value="查询">
+</div>
+<script>
+    var oDemo = document.getElementById('demo');
+    var aInp = oDemo.getElementsByTagName('input');
+    var oTxt = oDemo.getElementsByTagName('textarea')[0];
+    var oDiv = oDemo.getElementsByTagName('div')[0];
+    aInp[0].onclick = function () {
+        oDiv.innerHTML += oTxt.value
+    };
+    aInp[2].onclick = function () {
+        var  str = oDiv.innerHTML;
+        if(str.split(aInp[1].value).length === 1){
+            alert('抱歉，没有找到： '+aInp[1].value)
+        }
+        else if(aInp[1].value === ''){alert('请输入内容')}
+        else{
+            oDiv.innerHTML = str.split(aInp[1].value).join('<span>'+aInp[1].value+'</span>');
+        }
+    };
+</script>
 </body>
 </html>
