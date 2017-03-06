@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 8</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #wrap{
+            width: 100%;
+        }
+        div[class*='col-']{
+            float: left;
+            background: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        div[class*='col-']>p{
+            width: 100%;
+            float: left;
+            background: #eee;
+            height: 50px;
+            border: 1px solid #999999;
+            box-sizing: border-box;
+        }
+        @media screen and (min-width: 768px){
+            .col-md-1{
+                width: 8.33%;
+            }
+            .col-md-2{
+                width: 16.67%;
+            }
+            .col-md-3{
+                width: 25%;
+            }
+            .col-md-4{
+                width: 33.33%;
+            }
+            .col-md-6{
+                width: 50%;
+            }
+        }
+        @media screen and (max-width: 768px){
+            .col-sm-2{
+                width: 16.67%;
+            }
+            .col-sm-3{
+                width: 25%;
+            }
+            .col-sm-6{
+                width: 50%;
+            }
+            .col-sm-6{
+                width: 50%;
+            }
+            .col-sm-8{
+                width: 66.66%;
+            }
+            .col-sm-12{
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="col-md-4 col-sm-6"><p></p></div>
+    <div class="col-md-4 col-sm-6"><p></p></div>
+    <div class="col-md-4 col-sm-12"><p></p></div>
+    <div class="col-md-3 col-sm-3"><p></p></div>
+    <div class="col-md-6 col-sm-6"><p></p></div>
+    <div class="col-md-3 col-sm-3"><p></p></div>
+    <div class="col-md-1 col-sm-2"><p></p></div>
+    <div class="col-md-1 col-sm-2"><p></p></div>
+    <div class="col-md-2 col-sm-8"><p></p></div>
+    <div class="col-md-2 col-sm-3"><p></p></div>
+    <div class="col-md-6 col-sm-3"><p></p></div>
+</div>
+</body>
+</html>

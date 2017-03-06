@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task7:JavaScript和树（一）</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #demo{
+            width: 410px;
+            height: 210px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        div{
+            border: 1px solid #bfbfbf;
+            padding: 5px;
+        }
+
+        #demo div{
+            display: inline-block;
+            margin: 5px 0;
+        }
+        #demo .part1{
+            width: 390px;
+            height: 80px;
+            margin-top: 8px;
+        }
+        #demo .part2{
+            width: 180px;
+            height: 58px;
+        }
+        #demo .part3{
+            width: 76px;
+            height: 38px;
+        }
+        #demo .part4{
+            width: 24px;
+            height: 16px;
+        }
+        input{
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <div class="part1">
+        <div class="part2">
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+        </div>
+        <div class="part2">
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="part1">
+        <div class="part2">
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+        </div>
+        <div class="part2">
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+            <div class="part3">
+                <div class="part4"></div>
+                <div class="part4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="button" value="前序遍历">
+<input type="button" value="中序遍历">
+<input type="button" value="后序遍历">
+<script>
+    var oDome = document.getElementById('demo');
+    var part1 = oDome.getElementsByClassName('part1');
+    var part2 = oDome.getElementsByClassName('part2');
+    var part3 = oDome.getElementsByClassName('part3');
+    var part4 = oDome.getElementsByClassName('part4');
+    var aBtn = document.getElementsByTagName('input');
+    var arrColor = ['#FFEE78','#F8D0BF','#92D5F8','#B7F8AF','#9EABF8','#ffffff'];
+
+    aBtn[0].onclick = function () {
+
+    }
+    //先序遍历
+    function preOrder(node){
+        if(!node == null){
+            putstr(node.show()+ " ");
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+    //使用递归方式实现中序遍历
+    function inOrder(node){
+        if(!(node == null)){
+            inOrder(node.left);//先访问左子树
+            putstr(node.show()+ " ");//再访问根节点
+            inOrder(node.right);//最后访问右子树
+        }
+    }
+    //后序遍历
+    function postOrder(node){
+        if(!node == null){
+            postOrder(node.left);
+            postOrder(node.right);
+            putStr(node.show()+ " ");
+        }
+    }
+</script>
+
+</body>
+</html>
