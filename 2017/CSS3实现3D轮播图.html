@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3实现3d轮播图</title>
+    <style>
+        *{margin: 0;            padding: 0;}
+        #demo{
+            width: 1000px;
+            height: 180px;
+            margin: 200px auto;
+            -webkit-perspective:1000px;
+            -webkit-perspective-origin:center center;
+        }
+        #container{
+            width:280px;
+            height:180px;
+            position: relative;
+            margin: 0 auto;
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+            -webkit-transition: transform .5s linear;
+            transform: rotateY(60deg);
+        }
+        #demo img{width:280px;height:180px;position: absolute;}
+        #demo img:nth-child(1){-webkit-transform: rotateY(0deg) translateZ(-400px)}
+        #demo img:nth-child(2){-webkit-transform:  rotateY(60deg) translateZ(-400px)}
+        #demo img:nth-child(3){-webkit-transform: rotateY(120deg) translateZ(-400px)}
+        #demo img:nth-child(4){-webkit-transform:  rotateY(180deg) translateZ(-400px)}
+        #demo img:nth-child(5){-webkit-transform:  rotateY(240deg) translateZ(-400px)}
+        #demo img:nth-child(6){-webkit-transform:  rotateY(300deg) translateZ(-400px)}
+    </style>
+    <script>
+        window.onload =function () {
+            var oCon = document.getElementById('container');
+            var oImg = oCon.getElementsByTagName('img');
+            var timer = null;
+            var deg = 0;
+
+
+            oCon.onmouseover = function () {
+                clearInterval(timer);
+            };
+            oCon.onmouseout = function () {
+                timer = setInterval(function () {
+                    deg+=60;
+                    oCon.style.transform = 'rotateY('+deg+'deg)';
+                },2000);
+            };
+
+
+            for(var i=0; i<oImg.length; i++){
+                oImg[i].onclick = function () {
+                    deg+=60;
+                    oCon.style.transform = 'rotateY('+deg+'deg)';
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="demo">
+    <div id="container">
+        <img src="img/1.png">
+        <img src="img/2.png">
+        <img src="img/3.png">
+        <img src="img/4.png">
+        <img src="img/5.png">
+        <img src="img/6.png">
+    </div>
+</div>
+</body>
+</html>
