@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task8:JavaScript和树（二）</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            text-align: center;
+            font-size: 6px;
+        }
+        #demo{
+            width: 1000px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        div{
+            border: 1px solid #bfbfbf;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            transition: background 0.5s,transform 0.5s;
+        }
+        div{
+            height: 65%;
+        }
+        input{
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    market
+    <div style="flex: 5">
+        food
+        <div>fruit
+            <div>apple</div>
+            <div>orange</div>
+            <div>banana</div>
+            <div>berry</div>
+        </div>
+        <div>crop</div>
+        <div>meat
+            <div>beef</div>
+            <div>chicken</div>
+        </div>
+    </div>
+    <div style="flex: 5">living
+        <div>clothes
+            <div>pants</div>
+            <div>T-shirt</div>
+            <div>skirt</div>
+        </div>
+        <div>pro
+            <div>code
+                <div>cot</div>
+            </div>
+            <div>gross</div>
+        </div>
+    </div>
+    <div style="flex: 2">play</div>
+</div>
+<input type="text"><input type="button" value="遍历一">
+<input type="button" value="遍历二">
+<script>
+    var oDemo = document.getElementById('demo');
+    var aBtn = document.getElementsByTagName('input');
+    var nodeArray = [];
+    var timer = null;
+
+    aBtn[1].onclick = function () {
+        innit();
+        preOrder(oDemo);
+        changColor();
+    };
+    aBtn[2].onclick = function () {
+        innit();
+        postOrder(oDemo);
+        changColor();
+    };
+    //初始化
+    function innit() {
+        nodeArray = [];
+        var aDiv = document.getElementsByTagName('div');
+        for(var i=0;i<aDiv.length;i++) {
+            aDiv[i].style.backgroundColor = "#fff";
+        }
+    }
+    function changColor() {
+        var len = nodeArray.length;
+        var i = 0;
+        var text = '';
+        var rex = /\w+/;
+        nodeArray[i].style.backgroundColor = '#00cc99';
+        clearInterval(timer);
+        timer = setInterval(function () {
+            i++;
+            if(i<len){
+                nodeArray[i-1].style.backgroundColor = '#fff';
+                text = nodeArray[i].innerHTML.match(rex)[0];
+                //判断当前位置是否与所查询的内容相符
+                if(text == aBtn[0].value){
+                    nodeArray[i].style.backgroundColor = ' #e87850';
+//                    nodeArray[i].style.transform = 'scale(1.2)';
+                    clearInterval(timer);
+                }
+                else {
+                    nodeArray[i].style.backgroundColor = '#00cc99';
+                }
+            }
+            else{
+                clearInterval(timer);
+                nodeArray[i-1].style.backgroundColor = '#fff';
+                alert('找不到'+aBtn[0].value)
+            }
+        },500)
+    }
+    //遍历一
+    function preOrder(node){
+        if(node){
+            nodeArray.push(node);//先访问根节点
+            for(var i=0; i<node.children.length; i++){
+                preOrder(node.children[i]);
+            }
+        }
+    }
+    //遍历二
+    function postOrder(node){
+        if(node){
+            for(var i=0; i<node.children.length; i++){
+                postOrder(node.children[i]);
+            }
+            nodeArray.push(node);//最后访问根节点
+        }
+    }
+</script>
+</body>
+</html>
