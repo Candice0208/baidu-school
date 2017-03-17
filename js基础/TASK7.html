@@ -4,40 +4,34 @@
     <meta charset="UTF-8">
     <title>task7:JavaScript和树（一）</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
         body{
             text-align: center;
         }
         #demo{
             width: 410px;
-            height: 210px;
+            height: 200px;
             margin: 20px auto;
-            text-align: center;
+            flex-flow: column;
         }
         div{
             border: 1px solid #bfbfbf;
-            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 5px;
+            transition: background 0.5s;
         }
-
-        #demo div{
-            display: inline-block;
-            margin: 5px 0;
+        #demo>div div{
+            flex: 1;
+            height: 80%;
         }
-        #demo .part1{
+        #demo>div{
             width: 390px;
             height: 80px;
-            margin-top: 8px;
-        }
-        #demo .part2{
-            width: 180px;
-            height: 58px;
-        }
-        #demo .part3{
-            width: 76px;
-            height: 38px;
-        }
-        #demo .part4{
-            width: 24px;
-            height: 16px;
         }
         input{
             margin-right: 20px;
@@ -46,47 +40,47 @@
 </head>
 <body>
 <div id="demo">
-    <div class="part1">
-        <div class="part2">
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+    <div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-        <div class="part2">
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </div>
-    <div class="part1">
-        <div class="part2">
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+    <div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-        <div class="part2">
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
-            <div class="part3">
-                <div class="part4"></div>
-                <div class="part4"></div>
+            <div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </div>
@@ -95,41 +89,199 @@
 <input type="button" value="中序遍历">
 <input type="button" value="后序遍历">
 <script>
-    var oDome = document.getElementById('demo');
-    var part1 = oDome.getElementsByClassName('part1');
-    var part2 = oDome.getElementsByClassName('part2');
-    var part3 = oDome.getElementsByClassName('part3');
-    var part4 = oDome.getElementsByClassName('part4');
+    var oDemo = document.getElementById('demo');
     var aBtn = document.getElementsByTagName('input');
-    var arrColor = ['#FFEE78','#F8D0BF','#92D5F8','#B7F8AF','#9EABF8','#ffffff'];
+    var nodeArray = [];
+    var timer = null;
 
     aBtn[0].onclick = function () {
-
-    }
-    //先序遍历
-    function preOrder(node){
-        if(!node == null){
-            putstr(node.show()+ " ");
-            preOrder(node.left);
-            preOrder(node.right);
+        innit();
+        preOrder(oDemo);
+        changColor();
+    };
+    aBtn[1].onclick = function () {
+        innit();
+        inOrder(oDemo);
+        changColor();
+    };
+    aBtn[2].onclick = function () {
+        innit();
+        postOrder(oDemo);
+        changColor();
+    };
+    //初始化
+    function innit() {
+        nodeArray = [];
+        var aDiv = document.getElementsByTagName('div');
+        for(var i=0;i<aDiv.length;i++) {
+            aDiv[i].style.backgroundColor = "#fff";
         }
     }
-    //使用递归方式实现中序遍历
+    function changColor() {
+        var len = nodeArray.length;
+        var i = 0;
+        nodeArray[i].style.backgroundColor = '#00cc99';
+        clearInterval(timer);
+        timer = setInterval(function () {
+            i++;
+            if(i<len){
+                nodeArray[i-1].style.backgroundColor = '#fff';
+                nodeArray[i].style.backgroundColor = '#00cc99';
+            }
+            else{
+                clearInterval(timer);
+                nodeArray[i-1].style.backgroundColor = '#fff';
+            }
+        },500)
+    }
+    //前序遍历
+    function preOrder(node){
+        if(node){
+            nodeArray.push(node);//先访问根节点
+            preOrder(node.children[0]);//再访问左子树
+            preOrder(node.children[1]);//最后访问右子树
+        }
+    }
+    //中序遍历
     function inOrder(node){
-        if(!(node == null)){
-            inOrder(node.left);//先访问左子树
-            putstr(node.show()+ " ");//再访问根节点
-            inOrder(node.right);//最后访问右子树
+        if(node){
+            inOrder(node.children[0]);//先访问左子树
+            nodeArray.push(node);//再访问根节点
+            inOrder(node.children[1]);//最后访问右子树
         }
     }
     //后序遍历
     function postOrder(node){
-        if(!node == null){
-            postOrder(node.left);
-            postOrder(node.right);
-            putStr(node.show()+ " ");
+        if(node){
+            postOrder(node.children[0]);//先访问左子树
+            postOrder(node.children[1]);//再访问右子树
+            nodeArray.push(node);//最后访问根节点
         }
     }
+
+
+    //    var node = {
+    //        value: 125,
+    //        left: null,
+    //        right: null
+    //    };
+    //    function BinarySearchTree() {
+    //        this._root = null;
+    //    }
+    //
+    //    BinarySearchTree.prototype = {
+    //        //restore constructor
+    //        constructor: BinarySearchTree,
+    //        //二叉树查找
+    //        contains: function(value){
+    //            var found = false, current = this._root;
+    //
+    //            //make sure there's a node to search
+    //            while(!found && current){
+    //
+    //                //if the value is less than the current node's, go left
+    //                if (value < current.value){
+    //                    current = current.left;
+    //
+    //                    //if the value is greater than the current node's, go right
+    //                } else if (value > current.value){
+    //                    current = current.right;
+    //
+    //                    //values are equal, found it!
+    //                } else {
+    //                    found = true;
+    //                }
+    //            }
+    //            //only proceed if the node was found
+    //            return found;
+    //        },
+    //        add: function(value){
+    //            //create a new item object, place data in
+    //            var node = {
+    //                        value: value,
+    //                        left: null,
+    //                        right: null
+    //                    },
+    //
+    //            //used to traverse the structure
+    //                    current;
+    //            //special case: no items in the tree yet
+    //            if (this._root === null){
+    //                this._root = node;
+    //            }
+    //            else {
+    //                current = this._root;
+    //                while(true){
+    //                    //if the new value is less than this node's value, go left
+    //                    if (value < current.value){
+    //                        //if there's no left, then the new node belongs there
+    //                        if (current.left === null){
+    //                            current.left = node;
+    //                            break;
+    //                        } else {
+    //                            current = current.left;
+    //                        }
+    //                        //if the new value is greater than this node's value, go right
+    //                    } else if (value > current.value){
+    //                        //if there's no right, then the new node belongs there
+    //                        if (current.right === null){
+    //                            current.right = node;
+    //                            break;
+    //                        } else {
+    //                            current = current.right;
+    //                        }
+    //                        //if the new value is equal to the current one, just ignore
+    //                    } else {
+    //                        break;
+    //                    }
+    //                }
+    //            }
+    //        },
+    //        remove: function(value){
+    //        },
+    //        //遍历
+    //        traverse: function(process){
+    //
+    //            //helper function
+    //            function inOrder(node){
+    //                if (node){
+    //
+    //                    //traverse the left subtree
+    //                    if (node.left !== null){
+    //                        inOrder(node.left);
+    //                    }
+    //
+    //                    //call the process method on this node
+    //                    process.call(this, node);
+    //
+    //                    //traverse the right subtree
+    //                    if (node.right !== null){
+    //                        inOrder(node.right);
+    //                    }
+    //                }
+    //            }
+    //
+    //            //start with the root
+    //            inOrder(this._root);
+    //        },
+    //        size: function(){
+    //            var length = 0;
+    //            this.traverse(function(node){
+    //                length++;
+    //            });
+    //            return length;
+    //        },
+    //        toArray: function(){
+    //            var result = [];
+    //            this.traverse(function(node){
+    //                result.push(node.value);
+    //            });
+    //            return result;
+    //        },
+    //        toString: function(){
+    //            return this.toArray().toString();
+    //        }
+    //    };
 </script>
 
 </body>
