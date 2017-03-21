@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task9：使用HTML/CSS实现一个复杂页面</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-family: "微软雅黑", serif;
+        }
+        li{
+            list-style: none;
+        }
+        #wrap{
+            width: 1280px;
+            margin: 0 auto;
+        }
+        #wrap>header{
+            width: 100%;
+            height: 56px;
+            background-color: #2189bf;
+            position: relative;
+        }
+        #wrap>header img{
+            position: absolute;
+            top: 10px;
+            left: 50px;
+        }
+        #wrap>header input{
+            position: absolute;
+            top: 14px;
+            left: 810px;
+            height: 28px;
+            width: 280px;
+            border-radius: 50px;
+            padding-left: 32px;
+            background: url("img/1.gif") no-repeat 10px center , #FFFFFF;
+            border: none;
+        }
+        #wrap>header span{
+            position: absolute;
+            top: 18px;
+            left: 1144px;
+            padding-left: 20px;
+            background: url("img/3.gif") no-repeat 0 center;
+            color: white;
+        }
+        aside{
+            float: left;
+            width: 260px;
+            height: 1208px;
+            background: #2a2e3d;
+            color: #FFFFFF;
+        }
+        aside>header{
+            width: 100%;
+            height: 150px;
+            color: white;
+            position: relative;
+        }
+        aside>header div{
+            width: 46px;
+            height: 46px;
+            padding: 2px;
+            border: 2px solid #acacac;
+            border-radius: 50px;
+            position: absolute;
+            top: 17px;
+            left: 44px;
+        }
+        aside>header div img{
+            width: 46px;
+            height: 46px;
+            border-radius: 50px;
+        }
+        aside>header .username{
+            position: absolute;
+            top: 38px;
+            left: 119px;
+        }
+        aside>header li:not(.line){
+            text-align: center;
+            opacity: 0.6;
+            width: 84px;
+            float: left;
+        }
+        aside>header .line{
+            border: 1px solid #7c7c7c;
+            height: 28px;
+            float: left;
+            margin-top: 4px;
+        }
+        aside>header ul{
+            position: absolute;
+            top: 96px;
+            left: 30px;
+        }
+        #list{
+            margin:20px 0 0 45px;
+            line-height: 44px;
+            opacity: 0.3;
+        }
+        #list h1{
+            padding-left: 30px;
+        }
+        #list .file h1{
+            background: url("img/8.gif") no-repeat 0 center;
+        }
+        #list .coll h1{
+            background: url("img/4.gif") no-repeat 0 center;
+        }
+        #list .share h1{
+            background: url("img/6.gif") no-repeat 0 center;
+        }
+        #list .photos h1{
+            background: url("img/4.gif") no-repeat 0 center;
+        }
+        #list .grow h1{
+            background: url("img/4.gif") no-repeat 0 center;
+        }
+        #list .account h1{
+            background: url("img/4.gif") no-repeat 0 center;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <header>
+        <img src="img/2.gif"/>
+        <input type="text">
+        <span>登录</span>
+    </header>
+    <aside>
+        <header>
+            <div>
+                <img src="img/1.jpg" alt="头像">
+            </div>
+            <span class="username">ABC123</span>
+            <uL>
+                <li class="collection"><span>110</span><br>收藏</li>
+                <li class="line"></li>
+                <li class="fans"><span>313</span><br>粉丝</li>
+            </uL>
+        </header>
+        <ul id="list">
+            <li class="file">
+                <h1>个人报表</h1>
+                <ul>
+                    <li>文件一</li>
+                    <li>文件二</li>
+                    <li>文件三</li>
+                </ul>
+            </li>
+            <li class="coll"><h1>个人收藏</h1></li>
+            <li class="share"><h1>我的分享</h1></li>
+            <li class="photos"><h1>图库</h1></li>
+            <li class="grow"><h1>成长记录</h1></li>
+            <li class="account"><h1>账户信息</h1></li>
+        </ul>
+    </aside>
+    <section></section>
+</div>
+</body>
+</html>
